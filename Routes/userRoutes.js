@@ -9,6 +9,6 @@ router.get("/mocktest",TestData)
 router.get("/video",VideoData)
 router.get("/might",MightData)
 router.post("/buytest", CheckTest)
-router.get("/getalltest", GetAllTest)
+router.get("/getalltest/:id", GetAllTest)
 
 module.exports = router

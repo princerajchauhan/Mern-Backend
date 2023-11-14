@@ -17,23 +17,24 @@ const MightData = (req, res) =>{
 
 const CheckTest = async(req, res) =>{
     try {
-        const detail = req.body
-        const duplicate = await Test.findOne({name: detail.name})
+        const {elem, id} = req.body
+        const duplicate = await Test.findOne({$and: [{name: elem.name}, {userId: id}]})
         if (duplicate) {
             res.send({msg: "you already buy the test", msg2: 'false'})
         }
         else{
-            const test = await Test.create(detail)
-            res.status(200).send({msg2: true, test})
+            const test = await Test.create({...elem, userId: id})
+            res.status(200).send({msg2: 'true', test})
         }
     } catch (error) {
-        res.status(500).send({msg: "error"})
+        res.status(500).send({msg: "error", msg2: 'false'})
     }
 }
 
 const GetAllTest = async(req, res) =>{
     try {
-        const alltest = await Test.find()
+        // console.log(req.params.id)
+        const alltest = await Test.find({userId: req.params.id})
         res.status(200).send(alltest)
     } catch (error) {
         res.status(500).send({msg: "error"})
