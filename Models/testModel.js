@@ -12,7 +12,8 @@ const testSchema = new Schema({
     date: String,
     price: Number,
     participants: Number,
-    duration: Number
+    duration: Number,
+    user: [{type: Schema.Types.ObjectId, ref: "UserDetail"}]
 })
 
 module.exports = mongoose.model("testDetail", testSchema)

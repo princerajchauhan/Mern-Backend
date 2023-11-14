@@ -35,7 +35,7 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    check: Boolean
+    check: Boolean,
 })
 
 module.exports = mongoose.model("UserDetail", userSchema)

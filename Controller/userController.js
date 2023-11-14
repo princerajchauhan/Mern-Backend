@@ -32,7 +32,7 @@ const Login = async (req, res) => {
             return res.status(200).send({ msg: "email and password does not match", msg2: false })
         }
         const token = jwt.sign({ email: details.email }, process.env.SECRET_KEY, { expiresIn: "24h" })
-        return res.status(200).send({ msg: "user successfully logged in.", msg2: true, name: find.name, userId: find.name, token })
+        return res.status(200).send({ msg: "user successfully logged in.", msg2: true, name: find.name, userId: find._id, token })
     } catch (error) {
 
     }
