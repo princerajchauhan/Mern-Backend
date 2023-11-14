@@ -9,7 +9,7 @@ const Register = async (req, res) => {
         const details = req.body
         const duplicate = await User.findOne({ email: details.email })
         if (duplicate) {
-            return res.status(400).json({ msg: "user already registered.", msg2: false })
+            return res.status(200).json({ msg: "user already registered.", msg2: false })
         }
         const hashedPassword = await bcrypt.hash(details.password, 10)
         const token = jwt.sign({ email: details.email }, process.env.SECRET_KEY, { expiresIn: '24h' })
